@@ -9,7 +9,7 @@ paths:
         - Authorization: []
       responses:
         '200':
-          description: 리뷰 조회 성공
+          description: 성공
           schema:
             type: object
             properties:
@@ -47,6 +47,92 @@ paths:
                       "english": "bee",
                       "image_url": "https://png.pngtree.com/png-vector/20230318/ourmid/pngtree-brown-bear-animal-transparent-on-white-png-image_6655701.png"
                     },
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+
+  /home/sentence:
+    get:
+      tags:
+        - Home
+      summary: 최근 책 구절(최대 5개) API
+      security:
+        - Authorization: []
+      responses:
+        '200':
+          description: 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              result:
+                type: array
+                example: {
+                  "sentence_list": [
+                    {
+                      "sentence_id": 5,
+                      "title": "곰",
+                      "quote": "bear",
+                      "image_url": "https://png.pngtree.com/png-vector/20230318/ourmid/pngtree-brown-bear-animal-transparent-on-white-png-image_6655701.png"
+                    },
+                    {
+                      "sentence_id": 4,
+                      "title": "어린 왕자",
+                      "quote": "The Little Prince",
+                      "image_url": "https://png.pngtree.com/png-vector/20230318/ourmid/pngtree-brown-bear-animal-transparent-on-white-png-image_6655701.png"
+                    },
+                    {
+                      "sentence_id": 3,
+                      "title": "꿀벌 마야의 모험",
+                      "quote": "The Adventures of Maya the Bee",
+                      "image_url": "https://png.pngtree.com/png-vector/20230318/ourmid/pngtree-brown-bear-animal-transparent-on-white-png-image_6655701.png"
+                    }
                   ]
                 }
                 
