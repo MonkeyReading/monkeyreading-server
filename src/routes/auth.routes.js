@@ -49,4 +49,3 @@ authRouter.post(
 );
 
 export { authRouter };
-//...
