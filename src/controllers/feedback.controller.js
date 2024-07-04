@@ -1,7 +1,8 @@
 import { BaseError } from "../../config/error.js";
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { addUserAnswer } from "../services/feedback.service.js";
+import { addAnswer } from "../models/feedback.dao.js";
+import { addAnswerSentiment, addUserAnswer } from "../services/feedback.service.js";
 
 // 유저의 답변 저장
 export const feedbackUserAnswer = async (req, res, next) => {
@@ -14,3 +15,8 @@ export const feedbackUserAnswer = async (req, res, next) => {
         next(new BaseError(status.INTERNAL_SERVER_ERROR));
     }
 };
+
+// 답변에 대한 센티멘트 저장
+export const answerSentiment=async(req,res,next)=>{
+    res.send(response(status.SUCCESS,await addAnswerSentiment(req.body)));
+}
