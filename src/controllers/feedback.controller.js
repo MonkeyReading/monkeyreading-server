@@ -33,5 +33,5 @@ export const getAnswerId=async(req,res,next)=>{
 
 // 유저의 답변 가져오기
 export const getUserAnswer=async(req,res,next)=>{
-    res.send(response(status.SUCCESS,await getUserAns(req.params)));
+    res.send(response(status.SUCCESS,await getUserAns(req.params,req.query)));
 }

@@ -22,10 +22,10 @@ export const getAnsId=async(content)=>{
 }
 
 //유저의 답변 가져오기
-export const getUserAns=async(params)=>{
-    const result=await getUserAnswers(params.user_id,params.book_id);
+export const getUserAns=async(params,book_id)=>{
+    const result=await getUserAnswers(params.user_id,params.question_id,book_id);
     if(result==-1){
         throw new BaseError(status.BAD_REQUEST);
     }
-    return userAnswerResponseDTO(result);
+    return {"content":result[0].content};
 }

@@ -1,7 +1,7 @@
 import {pool} from "../../config/db.connect.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { addAnswerQuery, addSentimentQuery, getAnswerIdQuery, getQuestionIdQuery } from "./feedback.sql.js";
+import { addAnswerQuery, addSentimentQuery, getAnswerIdQuery, getQuestionIdQuery, getUserAnswerQuery } from "./feedback.sql.js";
 
 export const addAnswer=async(data)=>{
     try{
@@ -67,10 +67,11 @@ export const getAId=async(content)=>{
     }
 }
 
-export const getUserAnswers=async(user_id,book_id)=>{
+export const getUserAnswers=async(user_id,question_id,book_id)=>{
     try{
         const conn=await pool.getConnection();
-        const [result]=await pool.query(getUserAnswerQuery,[user_id,book_id]);
+        const [result]=await pool.query(getUserAnswerQuery,[user_id,question_id,book_id]);
+        console.log(result);
         if(result.length==0){
             return -1;
         }
