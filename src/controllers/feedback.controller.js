@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { getAnsId, getQuesId, getUserAns } from "../providers/feedback.provider.js";
+import { getAnsId, getQuesId, getUserAns, getUserSent } from "../providers/feedback.provider.js";
 import { addAnswerSentiment, addUserAnswer } from "../services/feedback.service.js";
 
 // 유저의 답변 저장
@@ -34,4 +34,9 @@ export const getAnswerId=async(req,res,next)=>{
 // 유저의 답변 가져오기
 export const getUserAnswer=async(req,res,next)=>{
     res.send(response(status.SUCCESS,await getUserAns(req.params,req.query)));
+}
+
+// 유저 답변의 세그먼트 가져오기
+export const getUserSentiment=async(req,res,next)=>{
+    res.send(response(status.SUCCESS,await getUserSent(req.params)));
 }

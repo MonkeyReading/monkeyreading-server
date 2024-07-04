@@ -1,6 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { getAId, getQId, getUserAnswers } from "../models/feedback.dao.js";
+import { userSentimentResponseDTO } from "../dtos/feedback.dto.js";
+import { getAId, getQId, getUserAnswers, getUserSentiments } from "../models/feedback.dao.js";
 
 //질문 아이디 가져오기
 export const getQuesId=async(content)=>{
@@ -28,4 +29,13 @@ export const getUserAns=async(params,book_id)=>{
         throw new BaseError(status.BAD_REQUEST);
     }
     return {"content":result[0].content};
+}
+
+//유저 답변의 세그먼트 가져오기
+export const getUserSent=async(params)=>{
+    const result=await getUserSentiments(params.user_id,params.answer_id);
+    if(result==-1){
+        throw new BaseError(status.BAD_REQUEST);
+    }
+    return userSentimentResponseDTO(result);
 }

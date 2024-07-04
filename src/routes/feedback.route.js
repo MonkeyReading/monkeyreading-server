@@ -1,6 +1,6 @@
 import express from "express";
 
-import { answerSentiment, feedbackUserAnswer, getAnswerId, getQuestionId, getUserAnswer } from "../controllers/feedback.controller.js";
+import { answerSentiment, feedbackUserAnswer, getAnswerId, getQuestionId, getUserAnswer, getUserSentiment } from "../controllers/feedback.controller.js";
 import expressAsyncHandler from 'express-async-handler';
 import { get } from "http";
 
@@ -10,3 +10,4 @@ feedbackRoute.post('/answer/sentiment',expressAsyncHandler(answerSentiment));
 feedbackRoute.get('/question_id',expressAsyncHandler(getQuestionId));
 feedbackRoute.get('/answer_id',expressAsyncHandler(getAnswerId));
 feedbackRoute.get('/:user_id/:question_id/answer',expressAsyncHandler(getUserAnswer));
+feedbackRoute.get('/:user_id/:answer_id/sentiment',expressAsyncHandler(getUserSentiment));
