@@ -8,6 +8,7 @@ const options = {
       description: "MonkeyReading API 설명",
     },
     // host: 'MonkeyReading-env.eba-n87vfqmg.ap-northeast-2.elasticbeanstalk.com',
+
     host: "localhost:3000/",
     basepath: "../",
   },
