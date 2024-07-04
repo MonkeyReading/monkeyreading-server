@@ -16,19 +16,17 @@ paths:
       responses:
         "200":
           description: 성공적으로 액세스 토큰과 리프레시 토큰을 받음
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  access_token:
-                    type: string
-                    description: 발급된 액세스 토큰
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                  refresh_token:
-                    type: string
-                    description: 발급된 리프레시 토큰
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+                description: 발급된 액세스 토큰
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+              refresh_token:
+                type: string
+                description: 발급된 리프레시 토큰
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
         "400":
           description: 잘못된 요청
           schema:
