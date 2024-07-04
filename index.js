@@ -33,7 +33,7 @@ app.get("/", (req, res, next) => {
   res.send(response(status.SUCCESS, "루트 페이지!"));
 });
 
-app.use("/auth", authRouter);
+app.use("/auth", authRouter); //kakaoLogin
 app.use("/feedback", feedbackRoute);
 
 app.use("/book", bookRouter);
