@@ -1,5 +1,6 @@
 // ../../config/kakao.config.js
 
-export const clientId = "your_client_id";
-export const redirectUri = "your_redirect_uri";
-export const tokenUrl = "TOKEN_URL";
+export const clientId = "47e26fcb94686bb05c151efc91aab76c";
+export const redirectUri =
+  "http://monkeyreading-env.eba-n87vfqmg.ap-northeast-2.elasticbeanstalk.com/auth/kakao47e26fcb94686bb05c151efc91aab76c";
+export const tokenUrl = "https://kauth.kakao.com/oauth/token";
