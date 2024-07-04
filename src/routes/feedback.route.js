@@ -8,3 +8,4 @@ feedbackRoute.post('/user/answer',expressAsyncHandler(feedbackUserAnswer));
 feedbackRoute.post('/answer/sentiment',expressAsyncHandler(answerSentiment));
 feedbackRoute.get('/question_id',expressAsyncHandler(getQuestionId));
 feedbackRoute.get('/answer_id',expressAsyncHandler(getAnswerId));
+feedbackRoute.get('/:user_id/:book_id/answer',expressAsyncHandler(getUserAnswer));
