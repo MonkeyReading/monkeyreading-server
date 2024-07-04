@@ -8,5 +8,5 @@ export const bookRegister = async (req, res, next) => {
     // console.log("path:", req.params); // 값이 잘 들어오나 찍어보기 위한 테스트 용
     // console.log("body:", req.body); // 값이 잘 들어오나 찍어보기 위한 테스트용
 
-    res.send(response(status.SUCCESS, await joinBook(req.params, req.body)));
+    res.send(response(status.SUCCESS, await joinBook(req.headers, req.body)));
 }
