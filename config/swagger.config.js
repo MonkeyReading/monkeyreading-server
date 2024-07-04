@@ -3,11 +3,11 @@ import SwaggerJsdoc from "swagger-jsdoc";
 const options = {
     definition: {
         info: {
-            title: 'UMC Study API',
+            title: 'MonkeyReading API',
             version: '1.0.0',
-            description: 'UMC Study API with express, API 설명'
+            description: 'MonkeyReading API 설명'
         },
-        host: 'localhost:3000',
+        host: 'MonkeyReading-env.eba-n87vfqmg.ap-northeast-2.elasticbeanstalk.com',
         basepath: '../'
     },
     apis: ['./src/routes/*.js', './swagger/*']
