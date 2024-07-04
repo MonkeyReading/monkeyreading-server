@@ -1,0 +1,53 @@
+paths:
+  /auth/kakao:
+    post:
+      summary: 카카오 로그인 요청
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth_code:
+                  type: string
+                  description: 카카오 로그인 인가 코드
+                  example: "abcde12345"
+      responses:
+        "200":
+          description: 성공적으로 액세스 토큰과 리프레시 토큰을 받음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: 발급된 액세스 토큰
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  refresh_token:
+                    type: string
+                    description: 발급된 리프레시 토큰
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        "400":
+          description: 요청이 실패하였음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: 에러 메시지
+                    example: "Authorization code is required"
+      parameters: # 파라미터를 여기에 추가합니다.
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              auth_code:
+                type: string
+                example: "abcde12345"
+                description: 카카오 로그인 인가 코드
