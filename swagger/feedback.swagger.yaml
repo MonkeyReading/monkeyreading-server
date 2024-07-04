@@ -15,7 +15,7 @@ paths:
               description: 질문 id
               example: 1
             content:
-              type: string
+              type: text
               description: 답변 내용
               example: "답변"
       responses:
