@@ -4,8 +4,8 @@ import axios from "axios";
 
 const authRouter = express.Router();
 
-const clientId = "CLIENT_ID";
-const clientSecret = "CLIEND_SECRET";
+const clientId = process.env.KAKAO_CLIENT_ID || "YOUR_CLIENT_ID";
+const clientSecret = process.env.KAKAO_CLIENT_SECRET || "YOUR_CLIENT_SECRET";
 
 // 카카오 로그인 처리
 authRouter.post(
@@ -19,8 +19,15 @@ authRouter.post(
 
     try {
       // 카카오로부터 토큰 요청
-      const tokenRequestUrl = `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${clientId}&client_secret=${clientSecret}&code=${auth_code}`;
-      const response = await axios.post(tokenRequestUrl);
+      const tokenRequestUrl = `https://kauth.kakao.com/oauth/token`;
+      const params = new URLSearchParams({
+        grant_type: "authorization_code",
+        client_id: clientId,
+        client_secret: clientSecret,
+        code: auth_code,
+      });
+
+      const response = await axios.post(tokenRequestUrl, params);
 
       const { access_token, refresh_token } = response.data;
 
