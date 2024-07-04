@@ -6,7 +6,7 @@ import { addAnswerQuery } from "./feedback.sql.js";
 export const addAnswer=async(data)=>{
     try{
         const conn=await pool.getConnection();
-        const [result]=await pool.query(addAnswerQuery,[data.question_id,data.content]);
+        const [result]=await pool.query(addAnswerQuery,[data.user_id,data.question_id,data.content]);
         if(result.length==0){
             return -1;
         }

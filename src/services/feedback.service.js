@@ -6,6 +6,7 @@ import { addAnswer } from "../models/feedback.dao.js";
 export const addUserAnswer=async(data)=>{
     //유저의 답변을 저장하는 비즈니스 로직
     const addAnswerData=await addAnswer({
+        user_id:data.user_id,
         question_id:data.question_id,
         content:data.content
     });

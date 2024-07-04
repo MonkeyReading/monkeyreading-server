@@ -10,6 +10,10 @@ paths:
         required: true
         schema:
           properties:
+            user_id:
+              type: bigint
+              description: 유저 id
+              example: 1
             question_id:
               type: bigint
               description: 질문 id
