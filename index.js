@@ -33,12 +33,8 @@ app.get("/", (req, res, next) => {
   res.send(response(status.SUCCESS, "루트 페이지!"));
 });
 
-app.use("/api", authRouter); //카카오 로그인 로직입니당
-app.use("/profile", profileRouter);
-
+app.use("/api", authRouter);
 app.use("/feedback", feedbackRoute);
-
-app.use("/book", bookRouter);
 
 // error handling
 app.use((req, res, next) => {

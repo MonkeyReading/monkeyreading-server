@@ -9,7 +9,7 @@ const clientSecret = process.env.KAKAO_CLIENT_SECRET || "YOUR_CLIENT_SECRET";
 
 // 카카오 로그인 처리
 authRouter.post(
-  "/auth/kakao",
+  "/kakao",
   asyncHandler(async (req, res) => {
     const { auth_code } = req.body;
 
