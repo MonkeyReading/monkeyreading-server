@@ -1,0 +1,88 @@
+paths:
+  /book/{userId}:
+    post:
+      tags:
+        - Book
+      summary: 책 생성
+      parameters:
+      - name: userId
+        in: path
+        schema:
+          type: integer
+        required: true
+      - name: add
+        in: body
+        required: true
+        schema:
+          properties:
+            isbn:
+              type: string
+              description: isbn
+              example: 8996991341 9788996991342
+            title:
+              type: string
+              description: 책 제목
+              example: 미움받을 용기
+            publisher:
+              type: string
+              description: 출판사
+              example: 인플루엔셜
+            thumbnail:
+              type: string
+              description: 이미지 URL
+              example: https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038
+            author:
+              type: array
+              description: 저자(작가) 리스트
+              example: ["홍길동", "김아무개"]
+      responses:
+        '200':
+          description: 성공!
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
