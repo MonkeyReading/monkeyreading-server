@@ -9,6 +9,7 @@ import { BaseError } from "./config/error.js";
 import { status } from "./config/response.status.js";
 import { healthRoute } from "./src/routes/health.route.js";
 import { authRouter } from "./src/routes/auth.routes.js";
+import { feedbackRoute } from './src/routes/feedback.route.js';
 
 dotenv.config(); // .env 파일 사용 (환경 변수 관리)
 
@@ -30,6 +31,8 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/api", authRouter);
+app.use('/feedback',feedbackRoute);
+
 
 // error handling
 app.use((req, res, next) => {
