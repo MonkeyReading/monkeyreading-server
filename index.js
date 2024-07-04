@@ -8,6 +8,7 @@ import { response } from './config/response.js';
 import { BaseError } from './config/error.js';
 import { status } from './config/response.status.js';
 import { healthRoute } from './src/routes/health.route.js';
+import { bookRouter } from './src/routes/book.route.js';
 
 dotenv.config();    // .env 파일 사용 (환경 변수 관리)
 
@@ -27,6 +28,9 @@ app.use('/health', healthRoute);
 app.get('/', (req, res, next) => {
     res.send(response(status.SUCCESS, "루트 페이지!"));
 })
+
+app.use('/book', bookRouter);
+
 
 // error handling
 app.use((req, res, next) => {
