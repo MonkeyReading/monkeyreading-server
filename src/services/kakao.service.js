@@ -1,18 +1,24 @@
-const axios = require("axios");
-const kakaoConfig = require("../../config/kakao.config.js");
+// ../services/kakao.service.js
 
-exports.getKakaoTokens = async (authCode) => {
-  const response = await axios.post(kakaoConfig.tokenUrl, null, {
-    params: {
-      grant_type: "authorization_code",
-      client_id: kakaoConfig.clientId,
-      redirect_uri: kakaoConfig.redirectUri,
-      code: authCode,
-    },
-  });
+import axios from "axios";
+import { tokenUrl, clientId, redirectUri } from "../../config/kakao.config.js";
 
-  return {
-    access_token: response.data.access_token,
-    refresh_token: response.data.refresh_token,
-  };
+export const getKakaoTokens = async (authCode) => {
+  try {
+    const response = await axios.post(tokenUrl, null, {
+      params: {
+        grant_type: "authorization_code",
+        client_id: clientId,
+        redirect_uri: redirectUri,
+        code: authCode,
+      },
+    });
+
+    return {
+      access_token: response.data.access_token,
+      refresh_token: response.data.refresh_token,
+    };
+  } catch (error) {
+    throw new Error("Failed to fetch tokens");
+  }
 };

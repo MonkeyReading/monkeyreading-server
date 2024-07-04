@@ -1,5 +1,5 @@
-module.exports = {
-  clientId: "YOUR_CLIENT_ID",
-  redirectUri: "YOUR_REDIRECT_URI",
-  tokenUrl: "https://kauth.kakao.com/oauth/token",
-};
+// ../../config/kakao.config.js
+
+export const clientId = "your_client_id";
+export const redirectUri = "your_redirect_uri";
+export const tokenUrl = "https://kauth.kakao.com/oauth/token";
