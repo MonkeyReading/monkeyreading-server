@@ -33,7 +33,7 @@ app.get("/", (req, res, next) => {
   res.send(response(status.SUCCESS, "루트 페이지!"));
 });
 
-app.use("/api", authRouter);
+app.use("/auth", authRouter);
 app.use("/feedback", feedbackRoute);
 
 // error handling
