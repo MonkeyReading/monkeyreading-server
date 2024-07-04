@@ -11,6 +11,7 @@ import { healthRoute } from './src/routes/health.route.js';
 import { bookRouter } from './src/routes/book.route.js';
 import { authRouter } from "./src/routes/auth.routes.js";
 import { feedbackRoute } from './src/routes/feedback.route.js';
+import { homeRouter } from './src/routes/home.route.js';
 
 dotenv.config(); // .env 파일 사용 (환경 변수 관리)
 
@@ -36,6 +37,7 @@ app.use('/feedback',feedbackRoute);
 
 
 app.use('/book', bookRouter);
+app.use('/home', homeRouter);
 
 
 // error handling
