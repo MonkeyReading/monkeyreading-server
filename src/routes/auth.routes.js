@@ -27,7 +27,11 @@ authRouter.post(
       // 성공적으로 토큰을 받았을 경우, 프론트엔드에게 응답
       res.json({ access_token, refresh_token });
     } catch (error) {
-      console.error("Failed to fetch tokens:", error.response.data);
+      if (error.response && error.response.data) {
+        console.error("Failed to fetch tokens:", error.response.data);
+      } else {
+        console.error("Failed to fetch tokens:", error.message);
+      }
       res.status(500).json({ error: "Failed to fetch tokens" });
     }
   })
