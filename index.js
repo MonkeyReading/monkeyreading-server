@@ -36,6 +36,9 @@ app.get("/", (req, res, next) => {
 app.use("/auth", authRouter);
 app.use("/feedback", feedbackRoute);
 
+app.use("/book", bookRouter);
+app.use("/home", homeRouter);
+
 // error handling
 app.use((req, res, next) => {
   const err = new BaseError(status.NOT_FOUND);
