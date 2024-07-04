@@ -1,18 +1,19 @@
-// const express = require('express')   // common JS
-import express from 'express'          // ES6
-import {tempRouter} from './src/routes/temp.route.js'
+import express from "express";
+import { authRouter } from "./src/routes/auth.routes.js";
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-})
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-// router setting
-app.use('/temp', tempRouter);
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// Router setting
+app.use("/api", authRouter);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
-
+  console.log(`Example app listening on port ${port}`);
+});
