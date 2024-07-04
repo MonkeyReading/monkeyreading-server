@@ -23,9 +23,4 @@ export const joinBook = async (header, body) => {
 
         return;
     }
-
-    await setUserBook(params.userId, joinBookData);
-
-    return;
-  }
-};
+}
