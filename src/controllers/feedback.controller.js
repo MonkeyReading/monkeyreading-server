@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { addAnswer } from "../models/feedback.dao.js";
+import { getAnsId, getQuesId } from "../providers/feedback.provider.js";
 import { addAnswerSentiment, addUserAnswer } from "../services/feedback.service.js";
 
 // 유저의 답변 저장
@@ -19,4 +19,14 @@ export const feedbackUserAnswer = async (req, res, next) => {
 // 답변에 대한 센티멘트 저장
 export const answerSentiment=async(req,res,next)=>{
     res.send(response(status.SUCCESS,await addAnswerSentiment(req.body)));
+}
+
+// 질문 아이디 가져오기
+export const getQuestionId=async(req,res,next)=>{
+    res.send(response(status.SUCCESS,await getQuesId(req.query)));
+}
+
+// 답변 아이디 가져오기
+export const getAnswerId=async(req,res,next)=>{
+    res.send(response(status.SUCCESS,await getAnsId(req.query)));
 }
