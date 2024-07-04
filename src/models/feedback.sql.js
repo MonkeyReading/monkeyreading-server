@@ -1,0 +1,1 @@
+export const addAnswerQuery="INSERT INTO ANSWER(question_id,content) VALUES(?,?)";
