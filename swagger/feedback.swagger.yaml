@@ -15,7 +15,7 @@ paths:
               description: 질문 id
               example: 1
             content:
-              type: string
+              type: text
               description: 답변 내용
               example: "답변"
       responses:
@@ -74,4 +74,233 @@ paths:
                 example: COMMON000
               message:
                 type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.\
+  /feedback/answer/sentiment:
+    post:
+      tags:
+        - Sentiment
+      summary: 답변 감정 등록
+      parameters:
+      - name: addSentiment
+        in: body
+        required: true
+        schema:
+          properties:
+            answer_id:
+              type: bigint
+              description: 답변 id
+              example: 1
+            positive:
+              type: double
+              description: 긍정 수치
+              example: 80.0
+            negative:
+              type: double
+              description: 부정 수치
+              example: 10.0
+            neutral:
+              type: double
+              description: 중립 수치
+              example: 10.0
+      responses:
+        '200':
+          description: 감정 등록 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: string
+                example:
+                  "sentiment_id": 1
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
                 example: 서버 에러, 관리자에게 문의 바랍니다.
+  /feedback/question_id:
+    get:
+      tags:
+        - Question
+      summary: 질문 Id 조회
+      parameters:
+        - name: content
+          in: query
+          required: false
+          schema:
+            properties:
+              content:
+                type: text
+      responses:
+        '200':
+          description: 질문 id 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "question_id": 1,
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+  /feedback/answer_id:
+    get:
+      tags:
+        - Answer
+      summary: 답변 Id 조회
+      parameters:
+        - name: content
+          in: query
+          required: false
+          schema:
+            properties:
+              content:
+                type: text
+      responses:
+        '200':
+          description: 답변 id 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "answer_id": 1,
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+                          
