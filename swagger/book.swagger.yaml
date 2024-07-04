@@ -83,3 +83,83 @@ paths:
               message:
                 type: string
                 example: 서버 에러, 관리자에게 문의 바랍니다.
+  /book/word:
+    post:
+      tags:
+        - Book
+      summary: 단어 생성
+      security:
+        - Authorization: []
+      parameters:
+      - name: add
+        in: body
+        required: true
+        schema:
+          properties:
+            book_id:
+              type: int
+              description: 책 아이디
+              example: 1
+            korean:
+              type: string
+              description: 한글
+              example: 사과
+            english:
+              type: string
+              description: 영어
+              example: apple
+            image_url:
+              type: string
+              description: 이미지 URL
+              example: https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1467038
+      responses:
+        '200':
+          description: 성공!
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
