@@ -34,7 +34,8 @@ authRouter.post(
         !response.data.access_token ||
         !response.data.refresh_token
       ) {
-        throw new Error("Failed to fetch tokens");
+        console.error("Failed to fetch tokens. Response data:", response.data);
+        return res.status(500).json({ error: "Failed to fetch tokens" });
       }
 
       const { access_token, refresh_token } = response.data;
@@ -43,7 +44,7 @@ authRouter.post(
       res.json({ access_token, refresh_token });
     } catch (error) {
       console.error("Failed to fetch tokens:", error.message);
-      res.status(500).json({ error: "Failed to fetch tokens" });
+      return res.status(500).json({ error: "Failed to fetch tokens" });
     }
   })
 );
