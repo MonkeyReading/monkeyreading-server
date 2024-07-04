@@ -4,13 +4,14 @@ import SwaggerUi from "swagger-ui-express";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import { response } from './config/response.js';
-import { BaseError } from './config/error.js';
-import { status } from './config/response.status.js';
-import { healthRoute } from './src/routes/health.route.js';
-import { bookRouter } from './src/routes/book.route.js';
+import { response } from "./config/response.js";
+import { BaseError } from "./config/error.js";
+import { status } from "./config/response.status.js";
+import { healthRoute } from "./src/routes/health.route.js";
+import { bookRouter } from "./src/routes/book.route.js";
 import { authRouter } from "./src/routes/auth.routes.js";
-import { feedbackRoute } from './src/routes/feedback.route.js';
+import { feedbackRoute } from "./src/routes/feedback.route.js";
+import { profileRouter } from "./src/routes/profile.route.js";
 
 dotenv.config(); // .env 파일 사용 (환경 변수 관리)
 
@@ -31,12 +32,12 @@ app.get("/", (req, res, next) => {
   res.send(response(status.SUCCESS, "루트 페이지!"));
 });
 
-app.use("/api", authRouter);
-app.use('/feedback',feedbackRoute);
+app.use("/api", authRouter); //카카오 로그인 로직입니당
+app.use("/profile", profileRouter);
 
+app.use("/feedback", feedbackRoute);
 
-app.use('/book', bookRouter);
-
+app.use("/book", bookRouter);
 
 // error handling
 app.use((req, res, next) => {

@@ -4,29 +4,6 @@ paths:
       summary: 사용자 프로필 업데이트
       tags:
         - Profile
-      parameters:
-        - in: query
-          name: userId
-          required: true
-          schema:
-            type: integer
-            example: 1
-          description: 사용자 ID
-        - in: query
-          name: nickname
-          required: true
-          schema:
-            type: string
-            example: "lychee"
-          description: 사용자 닉네임
-        - in: query
-          name: age
-          required: true
-          schema:
-            type: integer
-            format: int32
-            example: 21
-          description: 사용자 나이
       requestBody:
         required: true
         content:
