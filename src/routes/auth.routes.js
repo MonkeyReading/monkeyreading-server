@@ -5,7 +5,7 @@ import { kakaoLogin } from "../controllers/auth.controller.js";
 export const authRouter = express.Router(); // authRouter를 named export로 설정합니다.
 
 authRouter.post(
-  "/auth/kakao",
+  "/kakao",
   asyncHandler(async (req, res) => {
     const { auth_code } = req.body;
 
