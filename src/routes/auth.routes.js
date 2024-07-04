@@ -1,11 +1,16 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config(); // .env 파일의 환경 변수를 로드
 
 const authRouter = express.Router();
 
-const clientId = process.env.KAKAO_CLIENT_ID || "YOUR_CLIENT_ID";
-const clientSecret = process.env.KAKAO_CLIENT_SECRET || "YOUR_CLIENT_SECRET";
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+const redirectUri = process.env.REDIRECT_URI;
+const tokenUrl = process.env.TOKEN_URL;
 
 // 카카오 로그인 처리
 authRouter.post(
@@ -19,15 +24,15 @@ authRouter.post(
 
     try {
       // 카카오로부터 토큰 요청
-      const tokenRequestUrl = `https://kauth.kakao.com/oauth/token`;
       const params = new URLSearchParams({
         grant_type: "authorization_code",
         client_id: clientId,
         client_secret: clientSecret,
+        redirect_uri: redirectUri,
         code: auth_code,
       });
 
-      const response = await axios.post(tokenRequestUrl, params);
+      const response = await axios.post(tokenUrl, params);
 
       if (
         !response.data ||
