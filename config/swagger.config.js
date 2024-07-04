@@ -7,9 +7,16 @@ const options = {
       version: "1.0.0",
       description: "MonkeyReading API 설명",
     },
-    // host: 'MonkeyReading-env.eba-n87vfqmg.ap-northeast-2.elasticbeanstalk.com',
-    host: "localhost:3000/",
+    host: "MonkeyReading-env.eba-n87vfqmg.ap-northeast-2.elasticbeanstalk.com",
+    // host: "localhost:3000/",
     basepath: "../",
+    securityDefinitions: {
+      Authorization: {
+        type: "apiKey",
+        in: "header",
+        name: "Authorization",
+      },
+    },
   },
   apis: ["./src/routes/*.js", "./swagger/*"],
 };

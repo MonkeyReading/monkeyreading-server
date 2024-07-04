@@ -4,13 +4,15 @@ import SwaggerUi from "swagger-ui-express";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import { response } from './config/response.js';
-import { BaseError } from './config/error.js';
-import { status } from './config/response.status.js';
-import { healthRoute } from './src/routes/health.route.js';
-import { bookRouter } from './src/routes/book.route.js';
+import { response } from "./config/response.js";
+import { BaseError } from "./config/error.js";
+import { status } from "./config/response.status.js";
+import { healthRoute } from "./src/routes/health.route.js";
+import { bookRouter } from "./src/routes/book.route.js";
 import { authRouter } from "./src/routes/auth.routes.js";
-import { feedbackRoute } from './src/routes/feedback.route.js';
+import { feedbackRoute } from "./src/routes/feedback.route.js";
+import { homeRouter } from "./src/routes/home.route.js";
+import { profileRouter } from "./src/routes/profile.route.js";
 
 dotenv.config(); // .env 파일 사용 (환경 변수 관리)
 
@@ -32,11 +34,10 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/api", authRouter);
-app.use('/feedback',feedbackRoute);
+app.use("/feedback", feedbackRoute);
 
-
-app.use('/book', bookRouter);
-
+app.use("/book", bookRouter);
+app.use("/home", homeRouter);
 
 // error handling
 app.use((req, res, next) => {
