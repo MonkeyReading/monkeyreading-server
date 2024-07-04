@@ -1,12 +1,40 @@
 paths:
-  /:
-    get:
+  /feedback/book/questions:
+    post:
       tags:
-        - Test
-      summary: Root
+        - 질문 생성
+      summary: 질문 생성
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              book_id:
+                type: integer
+                example: 123
+              selected_quotes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    quote_id:
+                      type: integer
+                      example: 1
+                    quote_text:
+                      type: string
+                      example: "This is a quote."
+          example:
+            book_id: 123
+            selected_quotes:
+              - quote_id: 1
+                quote_text: "This is quote 1."
+              - quote_id: 2
+                quote_text: "This is quote 2."
       responses:
         '200':
-          description: 성공으로 상태 변화 성공!
+          description: 질문 생성 성공
           schema:
             type: object
             properties:
@@ -18,7 +46,46 @@ paths:
                 example: 2000
               message:
                 type: string
-                example: "success!"
+                example: "Success!"
               data:
+                type: object
+                properties:
+                  generated_questions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        quote_id:
+                          type: integer
+                          example: 1
+                        question_text:
+                          type: string
+                          example: "Generated question text."
+        '400':
+          description: Bad request - Invalid input data
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: 4000
+              message:
                 type: string
-                example: "루트 페이지!"
+                example: "Bad request"
+        '500':
+          description: Internal server error
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: 5000
+              message:
+                type: string
+                example: "Internal server error"
